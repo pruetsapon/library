@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var controller = require('../controllers/bookController');
 
-router.get('/books', controller.getBook);
-router.get('/book/:id', controller.getBookById);
+router.route('/books').get(controller.getBook);
+router.route('/book/:id')
+    .get(controller.getBookById)
+    .post(controller.getBookById);
 
 module.exports = router;

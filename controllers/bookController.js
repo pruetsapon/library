@@ -1,5 +1,4 @@
-var express = require('express');
-const books = require('../db');
+const books = require('../data/book');
 
 const getBook = (req, res) => {
     res.json(books);
