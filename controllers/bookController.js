@@ -1,10 +1,10 @@
-const books = require('../data/book');
+const bookRepository = require('../repositories/bookRepository');
 
-const getBook = (req, res) => {
-    res.json(books);
+const getBooks = (req, res) => {
+    res.json(bookRepository.getBooks());
 };
 const getBookById = (req, res) => {
-    res.json(books.find(book => book.id === req.params.id));
+    res.json(bookRepository.getBookById(req.params.id));
 };
 
-module.exports = {getBook, getBookById};
+module.exports = {getBooks, getBookById};

@@ -1,4 +1,4 @@
-const auth = require('../models/auth');
+const auth = require('../helpers/authenticate');
 
 const authenticate = (req, res, next) => {
     auth.authenticate(req.body)

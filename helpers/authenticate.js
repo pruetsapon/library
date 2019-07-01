@@ -1,6 +1,7 @@
-const config = require('../config.json');
 const jwt = require('jsonwebtoken');
+const config = require('../config.json');
 const users = require('../data/user');
+
 
 const authenticate = async ({ username, password }) => {
     const user = users.find(u => u.username === username && u.password === password);
