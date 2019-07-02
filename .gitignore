@@ -1,2 +1,7 @@
-*node_modules
-*.nyc_output
+api
+*library.api/node_modules
+*library.api/.nyc_output
+
+dmz
+*library.dmz/node_modules
+*library.dmz/.nyc_output
