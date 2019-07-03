@@ -11,7 +11,7 @@ const request = async ({url, method, body, headers}) => {
         headers: {
             'Accept': 'application/json',
             'Accept-Charset': 'utf-8',
-            // 'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${headers.tokenkey}`
         }
     };
