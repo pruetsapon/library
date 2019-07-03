@@ -1,33 +1,14 @@
-const request = require('request');
-const baseurl = require('../config.json').baseurl;
+const request = require('../helpers/request').request;
 
 const getBooks = (req, res) => {
-    request({
-        url: `${baseurl}/books`,
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Bearer ${req.headers.authorization}`
-        }
-    }, function (error, response, body) {
-        res.json(JSON.parse(body));
-    });
+    request(req)
+        .then(data => res.json(data))
+        .catch(err => res.json(err));
 };
 const getBookById = (req, res) => {
-    request({
-        url: `${baseurl}/book/${req.params.id}`,
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Accept-Charset': 'utf-8',
-            'Content-Type': 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': `Bearer ${req.headers.authorization}`
-        }
-    }, function (error, response, body) {
-        res.json(JSON.parse(body));
-    });
+    request(req)
+        .then(data => res.json(data))
+        .catch(err => res.json(err));
 };
 
 module.exports = {getBooks, getBookById};

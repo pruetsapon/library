@@ -6,7 +6,7 @@ const verify = () => {
     return exjwt({ secret }).unless({
         // public routes that don't require authentication
         path: [
-            { url: '/auth', methods: ['POST']  }
+            { url: '/api/v1/auth', methods: ['POST']  }
         ]
     });
 }

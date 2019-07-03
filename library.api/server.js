@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 app.use(verify());
 
 // api routes
-app.use('/', books);
-app.use('/', auth);
+app.use('/api/v1', books);
+app.use('/api/v1', auth);
 
 // global error handler
 app.use(errorHandler);

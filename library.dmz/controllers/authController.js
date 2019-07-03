@@ -1,14 +1,9 @@
-const request = require('request');
-const baseurl = require('../config.json').baseurl;
+const request = require('../helpers/request').request;
 
-const authenticate = (req, res, next) => {
-    request({
-        url: `${baseurl}/auth`,
-        method: 'POST',
-        json: req.body
-    }, function (error, response, body) {
-        res.json(body);
-    });
+const authenticate = (req, res) => {
+    request(req)
+        .then(data => res.json(data))
+        .catch(err => res.json(err));
 };
 
 module.exports = {authenticate};
