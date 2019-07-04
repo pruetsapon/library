@@ -2,6 +2,11 @@ api
 *library.api/node_modules
 *library.api/.nyc_output
 
+*library.api/package-lock.json
+
 dmz
 *library.dmz/node_modules
 *library.dmz/.nyc_output
+*library.dmz/logs
+
+*library.dmz/package-lock.json
