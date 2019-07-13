@@ -2,19 +2,24 @@ const winston = require('winston');
 const expressWinston = require('express-winston');
 expressWinston.requestWhitelist.push('body');
 expressWinston.responseWhitelist.push('body');
-const dateFormat = require('dateformat');
+require('winston-daily-rotate-file');
+
+const config = require('../config.json').log;
 
 const option = () => {
-    const date = dateFormat(new Date(), "yyyy-mm-dd");
     return {
-        level: 'info',
+        level: config.level,
         transports: [
             new winston.transports.Console({
                 json: true,
                 colorize: true
             }),
-            new winston.transports.File({
-                filename: `./logs/${date}.log`
+            new winston.transports.DailyRotateFile({
+                filename: './logs/application-%DATE%.log',
+                datePattern: 'YYYY-MM-DD',
+                zippedArchive: true,
+                maxSize: config.maxSize,
+                maxFiles: config.maxKeep
             })
         ],
         exitOnError: false

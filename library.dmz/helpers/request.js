@@ -1,5 +1,5 @@
 const rq = require('request-promise');
-const baseurl = require('../config.json').baseurl;
+const baseurl = require('../config.json').api_url;
 
 const header = (tokenkey) => {
     let header = {
