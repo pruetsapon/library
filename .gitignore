@@ -10,3 +10,6 @@ dmz
 *library.dmz/logs
 
 *library.dmz/package-lock.json
+
+pm2
+*logs
