@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const books = require('./routes/books');
 const auth = require('./routes/auth');
+const users = require('./routes/user');
 const log = require('./helpers/logger');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -13,6 +14,7 @@ app.use(log.logger());
 
 // api routes
 app.use('/', books);
+app.use('/', users);
 app.use('/', auth);
 
 // api error logger

@@ -1,8 +1,8 @@
 const exjwt = require('express-jwt');
 const config = require('../config.json');
+const { secret } = config;
 
 const verify = () => {
-    const { secret } = config;
     return exjwt({ secret }).unless({
         // public routes that don't require authentication
         path: [

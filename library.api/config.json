@@ -1,3 +1,4 @@
 ﻿{
-    "secret": "cHJ1ZXRzYXBvbg=="
+    "secret": "cHJ1ZXRzYXBvbg==",
+    "expiresIn": "1h"
 }
