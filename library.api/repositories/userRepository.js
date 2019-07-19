@@ -1,12 +1,12 @@
-const users = require('../data/user');
+const User = require('../models/userModel');
 
 class bookRepository {
     constructor() {}
     getUsers() {
-        return users;
+        return User.find().exec();
     }
     getUserById(id) {
-        return users.find(user => user.id === id);
+        return User.findOne({id: id}).exec();
     }
 }
 

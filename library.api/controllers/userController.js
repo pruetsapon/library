@@ -1,11 +1,10 @@
 const userRepository = require('../repositories/userRepository');
 
 const getUsers = (req, res) => {
-    res.json(userRepository.getUsers());
+    userRepository.getUsers().then(users => res.json(users));
 };
 const getUserById = (req, res) => {
-    console.log(userRepository.getUserById(req.params.id));
-    res.json(userRepository.getUserById(req.params.id));
+    userRepository.getUserById(req.params.id).then(user => res.json(user));
 };
 
 module.exports = {getUsers, getUserById};

@@ -1,12 +1,12 @@
-const books = require('../data/book');
+const Book = require('../models/bookModel');
 
 class bookRepository {
     constructor() {}
     getBooks() {
-        return books;
+        return Book.find().exec();;
     }
     getBookById(id) {
-        return books.find(book => book.id === id);
+        return Book.findOne({id: id}).exec();
     }
 }
 

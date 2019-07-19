@@ -1,4 +1,7 @@
 ﻿{
     "secret": "cHJ1ZXRzYXBvbg==",
-    "expiresIn": "1h"
+    "expiresIn": "1h",
+    "mongodb": {
+        "url": "mongodb://localhost:27017/library"
+    }
 }

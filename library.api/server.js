@@ -1,14 +1,22 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const cors = require('cors');
+
 const errorHandler = require('./helpers/error-handler');
 const permission = require('./helpers/permission');
 const verify = require('./helpers/verify');
-const books = require('./routes/books');
-const auth = require('./routes/auth');
-const users = require('./routes/user');
-const role = require('./models/role');
+
+const books = require('./routes/bookRoute');
+const auth = require('./routes/authRoute');
+const users = require('./routes/userRoute');
+
+const role = require('./common/role');
+
+const mongoConfig = require('./config.json').mongodb;
+mongoose.connect(mongoConfig.url, { useNewUrlParser: true });
+mongoose.connection;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
