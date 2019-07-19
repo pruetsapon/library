@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const books = require('./routes/books');
-const auth = require('./routes/auth');
-const users = require('./routes/user');
+const books = require('./routes/bookRoute');
+const auth = require('./routes/authRoute');
+const users = require('./routes/userRoute');
 const log = require('./helpers/logger');
 
 app.use(bodyParser.urlencoded({ extended: false }));
