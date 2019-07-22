@@ -15,7 +15,7 @@ const users = require('./routes/userRoute');
 const role = require('./common/role');
 
 const mongoConfig = require('./config.json').mongodb;
-mongoose.connect(mongoConfig.url, { useNewUrlParser: true });
+mongoose.connect(mongoConfig.url, { useNewUrlParser: true, useFindAndModify: false });
 mongoose.connection;
 
 app.use(bodyParser.urlencoded({ extended: false }));
