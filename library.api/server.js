@@ -1,41 +1,43 @@
+require('dotenv').config();
 const express = require('express');
-const app = express();
+const server = express();
+const config = require('./app/configs/config');
+const serviceLocator = require('./app/configs/di');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const cors = require('cors');
 
-const errorHandler = require('./helpers/error-handler');
-const permission = require('./helpers/permission');
-const verify = require('./helpers/verify');
+const errorHandler = require('./app/helpers/error_handler');
+const verify = require('./app/middlewares/verify');
+const routes = require('./app/routes/route');
 
-const books = require('./routes/bookRoute');
-const auth = require('./routes/authRoute');
-const users = require('./routes/userRoute');
+const Database = require('./app/configs/database');
+const mongoOption = { 
+  useNewUrlParser: true,
+  useFindAndModify: false 
+};
+new Database(config.mongo.port, config.mongo.host, config.mongo.name, mongoOption);
 
-const role = require('./common/role');
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
 
-const mongoConfig = require('./config.json').mongodb;
-mongoose.connect(mongoConfig.url, { useNewUrlParser: true, useFindAndModify: false });
-mongoose.connection;
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(cors());
+const corsOption = {
+  origin: '*',
+  optionsSuccessStatus: 200
+};
+server.use(cors(corsOption));
 
 // use JWT auth to secure the api
-app.use(verify());
-
-// api routes
-app.use('/api/v1', permission([role.admin, role.user]), books);
-app.use('/api/v1', permission(role.admin), users);
-app.use('/api/v1', auth);
+server.use(verify());
 
 // global error handler
-app.use(errorHandler);
+server.use(errorHandler);
+
+// api routes
+routes.register(server, serviceLocator);
 
 // start server
-app.listen(3000, () => {
-  console.log('Start server at port 3000.');
+server.listen(config.app.port, () => {
+  console.log(`${config.app.name} Server is running on port - ${config.app.port}`);
 });
 
-module.exports = app;
+module.exports = server;

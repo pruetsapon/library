@@ -1,5 +1,5 @@
 {
-  "name": "nodeapi",
+  "name": "library-api",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -13,6 +13,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
     "jsonwebtoken": "^8.5.1",

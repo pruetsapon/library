@@ -1,28 +1,28 @@
+require('dotenv').config();
 const express = require('express');
-const app = express();
+const server = express();
 const bodyParser = require('body-parser');
-const books = require('./routes/bookRoute');
-const auth = require('./routes/authRoute');
-const users = require('./routes/userRoute');
-const log = require('./helpers/logger');
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const config = require('./app/configs/config');
+const serviceLocator = require('./app/configs/di');
+const log = require('./app/helpers/logger');
+const routes = require('./app/routes/route');
+
+server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
 
 // api logger
-app.use(log.logger());
+server.use(log.logger());
 
 // api routes
-app.use('/', books);
-app.use('/', users);
-app.use('/', auth);
+routes.register(server, serviceLocator);
 
 // api error logger
-app.use(log.errorLogger());
+server.use(log.errorLogger());
 
 // start server
-app.listen(4000, () => {
-  console.log('Start server at port 4000.');
+server.listen(config.app.port, () => {
+  console.log(`${config.app.name} Server is running on port - ${config.app.port}`);
 });
 
-module.exports = app;
+module.exports = server;
