@@ -1,11 +1,4 @@
-api
-*library.api/node_modules
-*library.api/.nyc_output
-
-dmz
-*library.dmz/node_modules
-*library.dmz/.nyc_output
-*library.dmz/logs
-
-pm2
+*node_modules
+*.nyc_output
+*package-lock.json
 *logs
