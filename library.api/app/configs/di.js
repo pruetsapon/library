@@ -6,21 +6,21 @@ serviceLocator.register('mongoose', () => {
 
 serviceLocator.register('authService', (serviceLocator) => {
   const mongoose = serviceLocator.get('mongoose');
-  const AuthService = require('../sevices/authService');
+  const AuthService = require('../services/authService');
 
   return new AuthService(mongoose);
 });
 
 serviceLocator.register('bookService', (serviceLocator) => {
   const mongoose = serviceLocator.get('mongoose');
-  const BookService = require('../sevices/bookService');
+  const BookService = require('../services/bookService');
 
   return new BookService(mongoose);
 });
 
 serviceLocator.register('userService', (serviceLocator) => {
   const mongoose = serviceLocator.get('mongoose');
-  const UserService = require('../sevices/userService');
+  const UserService = require('../services/userService');
 
   return new UserService(mongoose);
 });
